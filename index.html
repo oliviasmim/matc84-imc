@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calculadora IMC</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				font-size: 1.125rem;
+				line-height: 1.5;
+				background-color: #f0f0f0;
+			}
+
+			.container {
+				max-width: 600px;
+				margin: 50px auto;
+				padding: 20px;
+				background-color: #fff;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+
+			label {
+				display: block;
+				margin-top: 10px;
+			}
+
+			input,
+			textarea,
+			select {
+				width: 100%;
+				padding: 8px;
+				margin-top: 5px;
+				box-sizing: border-box;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				font-size: 1rem;
+			}
+
+			button {
+				background-color: #634caf;
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				cursor: pointer;
+				border-radius: 5px;
+				font-size: 1rem;
+				margin-top: 20px;
+			}
+
+			button:hover {
+				background-color: #3b0c4b;
+			}
+
+			.result-card {
+				background-color: #f0f0f0;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 300px;
+				margin: 20px auto;
+			}
+
+			.result-title {
+				font-size: 1.25rem;
+				margin-bottom: 20px;
+				color: #3b0c4b;
+			}
+
+			#result {
+				font-size: 1.125rem;
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="container">
+			<section>
+				<h1>Calculadora de IMC</h1>
+				<form id="imc-form">
+					<label for="name">Nome:</label>
+					<input type="text" id="name" required />
+					<label for="height">Altura (em metros):</label>
+					<input
+						input
+						type="number"
+						required
+						name="height"
+						min="0"
+						value="0"
+						step=".01"
+						id="height"
+					/>
+					<label for="weight">Peso (em kilogramas):</label>
+					<input
+						input
+						type="number"
+						required
+						name="weight"
+						min="0"
+						value="0"
+						step=".1"
+						id="weight"
+					/>
+					<button type="submit">Calcular IMC</button>
+				</form>
+			</section>
+			<section class="result-card">
+				<h2 class="result-title">Resultados:</h2>
+				<div id="result"></div>
+			</section>
+		</main>
+		<script>
+			document
+				.getElementById("imc-form")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
+
+					const name = document.getElementById("name").value;
+					const height = parseFloat(document.getElementById("height").value);
+					const weight = parseFloat(document.getElementById("weight").value);
+
+					const imc = weight / (height * height);
+					const resultText = `Nome: ${name} \n IMC: ${imc.toFixed(2)}`;
+
+					document.getElementById("result").innerText = resultText;
+				});
+		</script>
+	</body>
+</html>
